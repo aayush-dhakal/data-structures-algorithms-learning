@@ -1,4 +1,4 @@
-public class DeleteLastNode {
+public class ReverseLinkedList {
   private ListNode head; // we needed head in display method. We are assigning its value in main method.
 
   public static class ListNode {
@@ -60,34 +60,38 @@ public class DeleteLastNode {
     return count;
   }
 
-  public ListNode deleteLastNode() {
-    if (head == null || head.next == null) { // we have to assume that the list is at least of two nodes
-      return null;
-      // return head;
+  public void reverseLinkedList() {
+    if (head == null || head.next == null) { // ie if there is no or only one node then return as it is
+      return;
     }
 
     ListNode current = head; // temp variable to traverse to last node
     ListNode previous = null;
-    while (current.next != null) { // current.next will be null for last node
+    ListNode next = null;
+
+    while (current != null) { // current.next will be null for last node
+      next = current.next;
+      current.next = previous;
       previous = current;
-      current = current.next; // move the current pointer to last node
+      current = next;
     }
 
-    previous.next = null;
-    return current;
+    head = previous; // current will be null at the end of the loop and previous will contain the
+                     // last element ie head for reverse linked list
   }
 
   public static void main(String[] args) {
-    DeleteLastNode sll = new DeleteLastNode();
+    ReverseLinkedList sll = new ReverseLinkedList();
     sll.insertEnd(6);
-    // sll.insertEnd(7);
-    // sll.insertEnd(8);
-    // sll.insertEnd(9);
+    sll.insertEnd(7);
+    sll.insertEnd(8);
+    sll.insertEnd(9);
 
     sll.display();
 
-    System.out.println("Deleted node is: " + sll.deleteLastNode().data);
+    sll.reverseLinkedList();
 
     sll.display();
+
   }
 }
