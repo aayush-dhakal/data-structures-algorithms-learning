@@ -1,4 +1,4 @@
-public class InsertNodeInSortedList {
+public class RemoveAGivenKeyNode {
   private ListNode head; // we needed head in display method. We are assigning its value in main method.
 
   public static class ListNode {
@@ -33,34 +33,26 @@ public class InsertNodeInSortedList {
 
   }
 
-  // we assume list is not empty
-  public void insertNode(int value) {
-    ListNode newNode = new ListNode(value);
+  public void removeNodeWithKey(int value) {
 
     ListNode current = head;
     ListNode previous = null;
 
-    // if value is less than the head
-    if (newNode.data < current.data || newNode.data == current.data) {
-      head = newNode;
-      newNode.next = current;
+    // if key is a first node
+    if (current.data == value) {
+      head = current.next;
+      current.next = null; // optional
       return;
     }
 
     // if value is in between node
-    while (current.data < newNode.data && current.next != null) {
+    while (current.data != value) {
       previous = current;
       current = current.next;
     }
 
-    // if value is at end
-    if (current.next == null) {
-      current.next = newNode;
-      return;
-    }
-
-    previous.next = newNode;
-    newNode.next = current;
+    previous.next = current.next;
+    current.next = null; // optional
   }
 
   public void display() {
@@ -91,17 +83,18 @@ public class InsertNodeInSortedList {
   }
 
   public static void main(String[] args) {
-    InsertNodeInSortedList sll = new InsertNodeInSortedList();
+    RemoveAGivenKeyNode sll = new RemoveAGivenKeyNode();
     sll.insertEnd(6);
     sll.insertEnd(7);
+    sll.insertEnd(8);
+    sll.insertEnd(10);
     sll.insertEnd(9);
 
     sll.display();
-    sll.insertNode(10);
-    sll.insertNode(6);
-    sll.insertNode(8);
-    sll.insertNode(8);
-    sll.insertNode(10);
+
+    // sll.removeNodeWithKey(8);
+    // sll.removeNodeWithKey(9);
+    sll.removeNodeWithKey(6);
     sll.display();
   }
 }
