@@ -1,6 +1,6 @@
 import java.util.HashSet;
 
-public class FindStartOfALoop {
+public class RemoveLoopInList {
   private ListNode head; // we needed head in display method. We are assigning its value in main method.
 
   public static class ListNode {
@@ -51,7 +51,6 @@ public class FindStartOfALoop {
     return false;
   }
 
-  // using Floyd's algorithm
   public ListNode startOfLoop() {
 
     ListNode fastPtr = head;
@@ -68,7 +67,6 @@ public class FindStartOfALoop {
     return null;
   }
 
-  // using Floyd's algorithm
   public ListNode getLoopStartingNode(ListNode slowPtr) {
     ListNode temp = head;
     while (slowPtr != temp) {
@@ -79,7 +77,36 @@ public class FindStartOfALoop {
     return temp;
   }
 
-  // using hashset
+  public void removeLoop() {
+
+    ListNode fastPtr = head;
+    ListNode slowPtr = head;
+
+    while (fastPtr != null && fastPtr.next != null) {
+      fastPtr = fastPtr.next.next;
+      slowPtr = slowPtr.next;
+
+      // first find the node where the fast and slow pointer meets
+      if (slowPtr == fastPtr) {
+        removeLoop(slowPtr);
+      }
+    }
+  }
+
+  // this method has arguments so it is method overloading
+  private void removeLoop(ListNode slowPtr) {
+    ListNode temp = head;
+    // this this condition is true then the node that they point will be the
+    // starting point of loop so slowPtr.next will contain the end of the loop node
+    // in this case
+    while (slowPtr.next != temp.next) {
+      temp = temp.next;
+      slowPtr = slowPtr.next;
+
+    }
+    slowPtr.next = null;
+  }
+
   public boolean detectALoop2() {
     ListNode current = head;
 
@@ -125,6 +152,31 @@ public class FindStartOfALoop {
       current = current.next;
     }
     return null;
+  }
+
+  public void removeLoop2() {
+    ListNode current = head;
+    ListNode previous = null;
+
+    HashSet<ListNode> s = new HashSet<ListNode>();
+
+    while (current != null) {
+      // If we have already has this node
+      // in hashmap it means there is a cycle
+      // (Because we are encountering the
+      // node second time).
+      if (s.contains(current)) {
+        previous.next = null;
+        return;
+      }
+
+      // If we are seeing the node for
+      // the first time, insert it in hash
+      s.add(current);
+
+      previous = current;
+      current = current.next;
+    }
   }
 
   public void display() {
@@ -174,7 +226,7 @@ public class FindStartOfALoop {
   }
 
   public static void main(String[] args) {
-    FindStartOfALoop sll = new FindStartOfALoop();
+    RemoveLoopInList sll = new RemoveLoopInList();
 
     sll.createALoopInLinkedList();
 
@@ -186,6 +238,11 @@ public class FindStartOfALoop {
 
     System.out.println("Start of loop = " + sll.startOfLoop().data);
     // System.out.println("Start of loop = " + sll.getLoopStartingNode2().data);
+
+    sll.removeLoop();
+    // sll.removeLoop2();
+    System.out.println("Loop exists = " + sll.detectALoop());
+    sll.display();
 
   }
 }
