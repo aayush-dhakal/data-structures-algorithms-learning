@@ -82,25 +82,25 @@ class DoublyLinkedList {
     System.out.println("null");
   }
 
-  public ListNode deleteFirstNode() {
+  public ListNode deleteLastNode() {
     if (isEmpty()) {
       throw new NoSuchElementException();
     }
 
-    ListNode temp = head;
+    ListNode temp = tail;
     if (head == tail) {
-      tail = null;
+      head = null;
     } else {
-      head.next.previous = null;
+      tail.previous.next = null;
     }
 
-    head = head.next;
-    temp.next = null;
+    tail = tail.previous;
+    temp.previous = null;
     return temp;
 
   }
 
-  public void deleteFirstNode2() {
+  public void deleteLastNode2() {
     // means list is empty. You can also use tail == null to check
     if (head == null) {
       return;
@@ -113,9 +113,9 @@ class DoublyLinkedList {
       return;
     }
 
-    ListNode temp = head;
-    head = temp.next;
-    head.previous = null;
+    ListNode temp = tail;
+    tail = temp.previous;
+    tail.next = null;
   }
 
   public static void main(String[] args) {
@@ -128,14 +128,13 @@ class DoublyLinkedList {
     dll.displayForward();
     dll.displayBackward();
 
-    // dll.deleteFirstNode2();
+    // dll.deleteLastNode2();
     // dll.displayForward();
     // dll.displayBackward();
 
-    ListNode deletedNode = dll.deleteFirstNode();
+    ListNode deletedNode = dll.deleteLastNode();
     System.out.println("Deleted node is " + deletedNode.data);
     dll.displayForward();
     dll.displayBackward();
-
   }
 }
