@@ -64,15 +64,35 @@ class CircularSinglyLinkedList {
     System.out.println(first.data);
   }
 
-  public void insertFirst(int data) {
+  public void insertEnd(int data) {
     ListNode temp = new ListNode(data);
 
     if (last == null) {
       last = temp;
+      last.next = last;
     } else {
+
       temp.next = last.next;
+      last.next = temp;
+      last = temp;
     }
-    last.next = temp;
+    length++;
+  }
+
+  public void insertEnd2(int data) {
+    ListNode temp = new ListNode(data);
+    ListNode head = null;
+
+    if (last == null) {
+      last = temp;
+      head = temp;
+    } else {
+      head = last.next;
+      last.next = temp;
+      temp.next = head;
+      last = temp;
+    }
+    last.next = head;
     length++;
   }
 
@@ -80,9 +100,13 @@ class CircularSinglyLinkedList {
     CircularSinglyLinkedList csll = new CircularSinglyLinkedList();
     // csll.createCircularLinkedList();
 
-    csll.insertFirst(2);
-    csll.insertFirst(4);
-    csll.insertFirst(25);
+    csll.insertEnd(32);
+    csll.insertEnd(4);
+    csll.insertEnd(25);
+
+    // csll.insertEnd2(2);
+    // csll.insertEnd2(4);
+    // csll.insertEnd2(25);
 
     csll.display();
   }
