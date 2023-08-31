@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 class BinaryTree {
 
   private TreeNode root;
@@ -31,19 +33,45 @@ class BinaryTree {
     second.left = fourth;
   }
 
-  public void preOrder(TreeNode root) {
+  public void preOrderTraversalRecursive(TreeNode root) {
     if (root == null) {
       return;
     }
 
     System.out.println(root.data + " ");
-    preOrder(root.left);
-    preOrder(root.right);
+    preOrderTraversalRecursive(root.left);
+    preOrderTraversalRecursive(root.right);
+  }
+
+  public void preOrderTraversalIterative(TreeNode root) {
+    if (root == null) {
+      return;
+    }
+
+    Stack<TreeNode> stack = new Stack<>();
+    stack.push(root);
+
+    while (!stack.isEmpty()) {
+      TreeNode temp = stack.pop();
+      System.out.println(temp.data);
+
+      if (temp.right != null) {
+        stack.push(temp.right);
+      }
+      if (temp.left != null) {
+        stack.push(temp.left);
+      }
+    }
   }
 
   public static void main(String[] args) {
     BinaryTree bt = new BinaryTree();
     bt.createBinaryTree();
-    bt.preOrder(bt.root);
+
+    System.out.println("Recursive traversal");
+    bt.preOrderTraversalRecursive(bt.root);
+
+    System.out.println("Iterative traversal");
+    bt.preOrderTraversalIterative(bt.root);
   }
 }
