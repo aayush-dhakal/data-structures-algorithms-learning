@@ -49,8 +49,9 @@ class BinarySearchTree {
     bst.insert(3);
     bst.insert(7);
     bst.insert(1);
+    bst.insert(5);
 
-    bst.inOrder(); // output will be in ascending sorted order
+    bst.inOrder(); // output will be in ascending sorted order: 1 3 5 5 7
     System.out.println();
   }
 }
