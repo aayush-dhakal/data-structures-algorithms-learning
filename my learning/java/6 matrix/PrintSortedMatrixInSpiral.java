@@ -21,7 +21,7 @@ public class PrintSortedMatrixInSpiral {
         }
         r--;
       }
-      // for printing inner elements
+      // for printing left column
       if (l < c) {
         for (i = r - 1; i >= k; i--) {
           System.out.println(matrix[i][l] + " ");
