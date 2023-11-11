@@ -22,13 +22,14 @@ class BubbleSort {
           isSwapped = true;
         }
       }
-      if (isSwapped == false)
+      if (isSwapped == false) // is swap is not performed then the array will already be in a sorted format so
+                              // simply exit out of the loop
         break;
     }
   }
 
   public static void main(String[] args) {
-    int[] arr = new int[] { 5, 1, 2, 9, 10 };
+    int[] arr = new int[] { 5, 1, 2, 78, 15, 9, 10 };
     BubbleSort bs = new BubbleSort();
     bs.printArray(arr);
     System.out.println("After Sort: ");
