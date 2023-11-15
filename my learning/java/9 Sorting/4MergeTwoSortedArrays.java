@@ -46,13 +46,13 @@ class MergeTwoSortedArrays {
     int[] arr1 = new int[] { 1, 4, 6, 8, 9 };
     int[] arr2 = new int[] { 0, 1, 4, 5, 6, 7 };
 
-    MergeTwoSortedArrays bs = new MergeTwoSortedArrays();
+    MergeTwoSortedArrays mts = new MergeTwoSortedArrays();
 
-    bs.printArray(arr1);
-    bs.printArray(arr2);
+    mts.printArray(arr1);
+    mts.printArray(arr2);
 
-    int[] mergedArray = bs.merge(arr1, arr2, 5, 6);
+    int[] mergedArray = mts.merge(arr1, arr2, 5, 6);
     System.out.println("After merge: ");
-    bs.printArray(mergedArray);
+    mts.printArray(mergedArray);
   }
 }

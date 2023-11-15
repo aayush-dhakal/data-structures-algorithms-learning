@@ -25,10 +25,10 @@ class InsertionSort {
 
   public static void main(String[] args) {
     int[] arr = new int[] { 5, 1, 9, 2, 15, 89, 10 };
-    InsertionSort bs = new InsertionSort();
-    bs.printArray(arr);
+    InsertionSort is = new InsertionSort();
+    is.printArray(arr);
     System.out.println("After Sort: ");
-    bs.sort(arr);
-    bs.printArray(arr);
+    is.sort(arr);
+    is.printArray(arr);
   }
 }
