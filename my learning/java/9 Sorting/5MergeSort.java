@@ -29,6 +29,9 @@ class MergeTwoSort {
       temp[i] = arr[i];
     }
 
+    // i will be pointing to left sub array, j will be pointing to right sub array
+    // and k will help to merge sorted element back to original array from temp
+    // array
     int i = low, j = mid + 1, k = low;
 
     while (i <= mid && j <= high) {
