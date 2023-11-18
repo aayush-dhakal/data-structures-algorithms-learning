@@ -1,4 +1,4 @@
-// Given an integer array sorted in ascending order, return an array of the squares of each number sorted in ascending order
+// Given an integer array sorted in ascending order, return an array of the squares of each number sorted in ascending order. Don't use sort coz that will be in O(nlogn), do it in O(n)
 class SortAfterSquaringSortedArray {
   public int[] sortedSqauredArray(int[] arr) {
     int n = arr.length;
