@@ -1,12 +1,12 @@
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
-class BreadthFirstSearchTraversal {
+class DepthFirstSearchTraversal {
   private LinkedList<Integer>[] adj;
   private int V; // number of vertices
   private int E; // number of edges
 
-  public BreadthFirstSearchTraversal(int nodes) {
+  public DepthFirstSearchTraversal(int nodes) {
     this.V = nodes;
     this.E = 0;
     this.adj = new LinkedList[nodes]; // initializing the array of LinkedList for all vertices
@@ -24,28 +24,31 @@ class BreadthFirstSearchTraversal {
     E++; // counting the number of edges
   }
 
-  // The Breadth First Search (BFS) algorithm is used to search a graph data
-  // structure for a node that meets a set of criteria. It starts at the root of
-  // the graph and visits all nodes at the current depth level before moving on to
-  // the nodes at the next depth level.
+  // Depth-first search is an algorithm for traversing or searching tree or graph
+  // data structures. The algorithm starts at the root node (selecting some
+  // arbitrary node as the root node in the case of a graph) and explores as far
+  // as possible along each branch before backtracking.
   // It uses an vistied array to keep track of the nodes that is already
-  // traversed. And uses queue to traverse the child nodes.
-  public void bfs(int s) {
+  // traversed. And uses stack to traverse all the associated nodes beginning from
+  // a particular node.
+  public void dfs(int s) {
     // s is a starting node for traversal
     boolean[] visited = new boolean[V];
-    Queue<Integer> q = new LinkedList<>();
+    Stack<Integer> stack = new Stack<>();
 
-    visited[s] = true;
-    q.offer(s);
+    stack.push(s);
 
-    while (!q.isEmpty()) {
-      int u = q.poll();
-      System.out.print(u + " ");
+    while (!stack.isEmpty()) {
+      int u = stack.pop();
 
-      for (int v : adj[u]) {
-        if (!visited[v]) {
-          visited[v] = true;
-          q.offer(v);
+      if (!visited[u]) {
+        visited[u] = true;
+        System.out.print(u + " ");
+
+        for (int v : adj[u]) {
+          if (!visited[v]) {
+            stack.push(v);
+          }
         }
       }
     }
@@ -69,7 +72,7 @@ class BreadthFirstSearchTraversal {
   }
 
   public static void main(String[] args) {
-    BreadthFirstSearchTraversal g = new BreadthFirstSearchTraversal(5);
+    DepthFirstSearchTraversal g = new DepthFirstSearchTraversal(5);
 
     g.addEdge(0, 1); // means 0 and 1 are a edge
     g.addEdge(1, 2);
@@ -79,6 +82,6 @@ class BreadthFirstSearchTraversal {
 
     System.out.println(g);
 
-    g.bfs(0); // giving source node as 0
+    g.dfs(0); // giving source node as 0
   }
 }
