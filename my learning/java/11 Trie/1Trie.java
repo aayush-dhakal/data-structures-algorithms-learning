@@ -38,6 +38,11 @@ class Trie {
       // corresponding to the letter's position in the alphabet. This helps map
       // characters to indices in an array, making it an efficient way to store and
       // retrieve information in the Trie.
+      // example:
+      // System.out.println((int) 'a'); // prints 97(Unicode of a)
+      // System.out.println('a' - 'a'); // prints 0
+      // System.out.println('b' - 'a'); // prints 1 (Unicode of b is 98 ie Unicode of
+      // a + 1)
 
       if (current.children[index] == null) {
         TrieNode node = new TrieNode();
